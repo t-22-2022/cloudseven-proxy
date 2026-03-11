@@ -10,7 +10,7 @@ export async function onRequest(context) {
 
   const target = "https://" + path;
 
-  // ambil IP sebenar client
+ 
   const realIP = request.headers.get("CF-Connecting-IP") || "Unknown";
 
   console.log("🟢 REQUEST RECEIVED");
