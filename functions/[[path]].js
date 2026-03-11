@@ -1,36 +1,37 @@
 export async function onRequest(context) {
 
-  const url = new URL(context.request.url);
+  const request = context.request;
+  const url = new URL(request.url);
+
   const path = url.pathname.slice(1);
 
   if (!path) {
-    return new Response("cloudseven Proxy Ready", {
-      headers: { "content-type": "text/plain" }
+    return new Response("CloudSeven Proxy Ready", {
+      status: 200
     });
   }
 
-  let target;
+  const target = "https://" + path;
 
-  try {
-    target = decodeURIComponent(path);
-  } catch {
-    target = path;
-  }
+  const headers = new Headers();
 
-  if (!target.startsWith("http")) {
-    target = "https://" + target;
-  }
+  headers.set("User-Agent", request.headers.get("User-Agent") || "Mozilla/5.0");
+  headers.set("Referer", target);
+  headers.set("Origin", target);
 
   const response = await fetch(target, {
-    method: context.request.method,
-    headers: {
-      "User-Agent": "Mozilla/5.0",
-      "Accept": "*/*"
-    }
+    method: request.method,
+    headers: headers
   });
+
+  const newHeaders = new Headers(response.headers);
+
+  newHeaders.set("Access-Control-Allow-Origin", "*");
+  newHeaders.set("Access-Control-Allow-Headers", "*");
+  newHeaders.set("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS");
 
   return new Response(response.body, {
     status: response.status,
-    headers: response.headers
+    headers: newHeaders
   });
 }
