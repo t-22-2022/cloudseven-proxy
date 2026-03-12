@@ -10,16 +10,19 @@ export async function onRequest(context) {
 
   const target = "https://" + path;
 
- 
+  const CUSTOM_UA = "Ott Tv/1.7.3.1 (Linux;Android 11; en; CloudSeven)";
+
   const realIP = request.headers.get("CF-Connecting-IP") || "Unknown";
 
   console.log("🟢 REQUEST RECEIVED");
   console.log("🌍 Real IP:", realIP);
-  console.log("📱 UA:", request.headers.get("User-Agent"));
+  console.log("📱 UA:", CUSTOM_UA);
   console.log("🔗 Target:", target);
 
   const headers = new Headers();
-  headers.set("User-Agent", request.headers.get("User-Agent") || "Mozilla/5.0");
+
+  // paksa guna UA yang kita set
+  headers.set("User-Agent", CUSTOM_UA);
   headers.set("Referer", target);
   headers.set("Origin", target);
 
