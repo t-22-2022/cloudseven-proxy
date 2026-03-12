@@ -10,7 +10,7 @@ export async function onRequest(context) {
 
   const target = "https://" + path;
 
-  const CUSTOM_UA = "Ott Tv/1.7.3.1 (Linux;Android 11; en; CloudSeven)";
+  const CUSTOM_UA = "Ott Tv/1.7.3.1 (Linux;Android 12; en; 923k1l)";
 
   const realIP = request.headers.get("CF-Connecting-IP") || "Unknown";
 
