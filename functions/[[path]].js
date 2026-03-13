@@ -41,19 +41,13 @@ export async function onRequest(context) {
   headers.set("Referer", target);
   headers.set("Origin", target);
 
-  // Spoof IP headers
   headers.set("X-Forwarded-For", fakeIP);
   headers.set("X-Real-IP", fakeIP);
   headers.set("Client-IP", fakeIP);
   headers.set("True-Client-IP", fakeIP);
 
-  // Cloudflare style spoof
   headers.set("CF-Connecting-IP", fakeIP);
   headers.set("CF-IPCountry", "MY");
-
-  // =========================
-  // FETCH TARGET
-  // =========================
 
   const response = await fetch(target, {
     method: request.method,
