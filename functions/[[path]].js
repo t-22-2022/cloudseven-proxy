@@ -10,7 +10,7 @@ export async function onRequest(context) {
 
   const target = "https://" + path;
 
-  const CUSTOM_UA = "OTT Navigator/1.7.3.2 (linux;android 10; en; 11gkvct)";
+  const CUSTOM_UA = "DopamineTV/1.0.8 (Android; ARM) Kodi/21.0";
 
   function random(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
