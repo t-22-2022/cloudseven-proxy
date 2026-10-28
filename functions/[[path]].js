@@ -10,7 +10,7 @@ export async function onRequest(context) {
 
   const target = "https://" + path;
 
-  const CUSTOM_UA = "DopamineTV/1.0.8 (Android; ARM) Kodi/21.0";
+  const CUSTOM_UA = "";
 
   function random(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
