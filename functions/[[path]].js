@@ -10,7 +10,7 @@ export async function onRequest(context) {
 
   const target = "https://" + path;
 
-  const CUSTOM_UA = "OTT Player/1.7.2.2 (Linux;Android 8.1.0; en; 1f1av1m)";
+  const CUSTOM_UA = "ott navigator/1.7.3.221 (linux;android 10; en; 11gkvct)";
 
   function random(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
